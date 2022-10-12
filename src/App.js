@@ -1,9 +1,10 @@
 import React from "react";
 import shortid from "shortid";
 import "./App.css";
+
 class App extends React.Component {
   state = {
-    date: "    ",
+    date: "",
     todos: [],
     todoToShow: "All",
     data: "",
@@ -46,8 +47,7 @@ class App extends React.Component {
     );
   };
   handleSubmit = () => {
-    // console.log(document.querySelector("#date").value);
-    if (this.state.data != "" && document.querySelector("#date").value != "") {
+    if (this.state.data !== "" && document.querySelector("#date").value !== "") {
       this.setState(
         {
           todos: [
@@ -64,15 +64,17 @@ class App extends React.Component {
           localStorage.setItem("SettingToDo", JSON.stringify(this.state.todos));
         }
       );
-      this.state.data = "";
-      this.state.date = "";
+      this.setState({
+        data:"",
+        date:""
+      });
       document.querySelector("#input").value = "";
       document.querySelector("#date").value = "";
     } else {
-      if (this.state.data == "") {
+      if (this.state.data === "") {
         alert("Plz Fill the text");
       }
-      if (document.querySelector("#date").value == "") {
+      if (document.querySelector("#date").value === "") {
         alert("Plz Select the date");
       }
     }
